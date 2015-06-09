@@ -22,9 +22,14 @@ if(config.enableKodi) {
   var KodiApi = require('./api/kodi');
   myEcho.apis.push(new KodiApi(myEcho));
 }
+if(config.enableAssureLink) {
+  var AssureLink = require('./api/assurelink');
+  myEcho.apis.push(new AssureLink(myEcho));
+}
 // Query API is generally enabled
 var QueryApi = require('./api/query');
 myEcho.apis.push(new QueryApi(myEcho));
+
 
 setInterval(function() {
   myEcho.fetchTasks();

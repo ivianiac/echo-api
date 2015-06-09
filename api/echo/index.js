@@ -3,7 +3,6 @@ var Echo = function() {
   self.config = require('./.credentials');
   self.cheerio = require('cheerio');
   self.csrf = null;
-  self.mainAccountId = null;
   self.lastRun = 0;
 
   var request = require('request');
@@ -98,6 +97,7 @@ Echo.prototype.doLogin = function(apiBody) {
     jar: self.jar
   }, function(err, loginRequest, body) {
     console.log("Handling login...");
+
     $ = self.cheerio.load(body);
 
     var signInForm = $('#ap_signin_form');
@@ -125,12 +125,7 @@ Echo.prototype.doLogin = function(apiBody) {
       jar: self.jar
     }, function(err, httpResponse, body) {
       // And here we are, login complete. We expect to have a 302 response here, but we'll ignore it.
-      console.log("Login complete. Getting main user id");
-      self.request('household', 'GET', {}, {}, function(body) {
-        var response = JSON.parse(body);
-        self.mainAccountId = response.accounts[0].id;
-        console.log("Main account id: %s", self.mainAccountId);
-      });
+      console.log("Login complete.");
     });
   });
 };

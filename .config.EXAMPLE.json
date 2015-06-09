@@ -3,5 +3,6 @@
   "enableIsy": true,
   "enableNest": true,
   "enableSqueeze": true,
-  "enableKodi": true
+  "enableKodi": true,
+  "enableAssureLink": true
 }
